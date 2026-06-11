@@ -1,17 +1,17 @@
 ---
-
+import Main from "../layouts/Main.astro";
+import Hero from "../components/react/Hero.tsx";
+import Timeline from "../components/react/Timeline.tsx";
+import CaseStudies from "../components/react/CaseStudies.tsx";
+import TechStack from "../components/react/TechStack.tsx";
+import Footer from "../components/react/Footer.tsx";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Main>
+  {/* Hero loads eagerly so its entrance animation runs on first paint. */}
+  <Hero client:load />
+  <Timeline client:visible />
+  <CaseStudies client:visible />
+  <TechStack client:visible />
+  <Footer client:visible />
+</Main>
