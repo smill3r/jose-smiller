@@ -62,35 +62,26 @@ export default function CaseStudyCard({ study, index }: Props) {
 
             <p className="case-study__label">Impact</p>
             <p className="case-study__body">{study.impact}</p>
-
-            {study.links?.length ? (
-              <>
-                <p className="case-study__label">Example</p>
-                <ul className="case-study__links">
-                  {study.links.map((link) => (
-                    <li key={link.href} className="case-study__link-item">
-                      <a
-                        href={link.href}
-                        className="case-study__link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {link.label}
-                      </a>
-                      {link.note ? (
-                        <span className="case-study__link-note">
-                          {link.note}
-                        </span>
-                      ) : null}
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : null}
           </Collapse>
         </Reveal>
 
         <figure className="case-study__figure">
+          {study.links?.[0] ? (
+            <a
+              href={study.links[0].href}
+              className="case-study__figure-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open the recreated experience: ${study.links[0].label}`}
+            >
+              <span className="case-study__figure-link-label">
+                Open the recreated experience
+              </span>
+              <span className="material-symbols-rounded" aria-hidden="true">
+                open_in_new
+              </span>
+            </a>
+          ) : null}
           <Diagram />
           {/* Text alternative so the story survives without the animation. */}
           <figcaption className="sr-only">{study.diagramAlt}</figcaption>

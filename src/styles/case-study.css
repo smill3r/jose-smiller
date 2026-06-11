@@ -51,6 +51,40 @@
   max-width: 54ch;
 }
 
+.case-study__links-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.case-study__link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.65rem 0.95rem;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--color-bg);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 24px -14px
+    color-mix(in srgb, var(--accent) 65%, #111827 35%);
+  transition:
+    transform var(--transition-duration) var(--transition-spring),
+    box-shadow var(--transition-duration) var(--transition-timing);
+}
+
+.case-study__link-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px -14px
+    color-mix(in srgb, var(--accent) 70%, #111827 30%);
+}
+
 .case-study__toggle {
   margin-top: var(--space-6);
   background: var(--accent);
@@ -118,11 +152,36 @@
 
 /* Diagram figure panel — this is where the section's pastel reads. */
 .case-study__figure {
+  position: relative;
   margin: 0;
   background: color-mix(in srgb, var(--block-fill) 40%, var(--color-surface));
-  /* border: 1px solid color-mix(in srgb, var(--block-fill) 60%, var(--color-outline)); */
   border-radius: var(--radius-lg);
   padding: var(--space-8);
+}
+
+.case-study__figure-link {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.45rem 0.7rem;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-bg) 86%, transparent);
+  color: var(--accent);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 18px -12px rgba(15, 23, 42, 0.45);
+  z-index: 1;
+}
+
+.case-study__figure-link:hover {
+  background: color-mix(in srgb, var(--color-bg) 96%, transparent);
 }
 
 @media (max-width: 860px) {
