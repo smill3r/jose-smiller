@@ -1,0 +1,204 @@
+/* ===== Skill explorer (clickable cloud + detail panel) ===== */
+.tech-stack__lede {
+  margin-top: var(--space-4);
+  font-size: var(--text-body-lg);
+  color: var(--color-ink-muted);
+  max-width: 48ch;
+}
+
+/* ===== Donut skill explorer ===== */
+.skill-donut {
+  margin-top: var(--space-12);
+  width: min(100%, 560px);
+  margin-inline: auto;
+}
+.skill-donut__svg {
+  width: 100%;
+  height: auto;
+  overflow: visible; /* let orbiting nodes + tooltips spill past the ring */
+  display: block;
+}
+
+/* ----- Arc segments (skillset toggles) ----- */
+.donut-arc {
+  cursor: pointer;
+  outline: none;
+}
+.donut-arc path {
+  fill-opacity: 0.6;
+  stroke-width: 1.6;
+  stroke-opacity: 0.35;
+  transition: fill-opacity var(--transition-duration) var(--transition-timing);
+}
+.donut-arc:hover path {
+  fill-opacity: 0.85;
+}
+.donut-arc.is-dimmed path {
+  fill-opacity: 0.22;
+  stroke-opacity: 0.12;
+}
+.donut-arc.is-dimmed:hover path {
+  fill-opacity: 0.45;
+}
+.donut-arc__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  pointer-events: none;
+}
+.donut-arc:focus-visible path {
+  stroke: var(--color-ink);
+  stroke-opacity: 1;
+  stroke-width: 2.5;
+}
+
+/* ----- Skill sub-arcs (a skillset split apart) ----- */
+.skill-seg {
+  cursor: pointer;
+  outline: none;
+}
+.skill-seg path:first-child {
+  stroke-width: 1.4;
+  stroke-opacity: 0.45;
+  transition: fill-opacity var(--transition-duration) var(--transition-timing);
+}
+.skill-seg:hover path:first-child {
+  fill-opacity: 1 !important;
+}
+.skill-seg.is-selected path:first-child {
+  stroke-opacity: 1;
+  stroke-width: 2.2;
+}
+.skill-seg__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  pointer-events: none;
+}
+.skill-seg:focus-visible path:first-child {
+  stroke: var(--color-ink);
+  stroke-opacity: 1;
+  stroke-width: 2.5;
+}
+
+/* textPath centres horizontally; this keeps it on the ring's mid-band. */
+.donut-arc__label,
+.skill-seg__label {
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* ----- Tooltip ----- */
+.skill-tip {
+  pointer-events: none;
+}
+.skill-tip__bg {
+  fill: var(--color-ink);
+}
+.skill-tip__text {
+  fill: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* ----- Centre detail hole ----- */
+.donut-center__disc {
+  fill: var(--color-surface);
+  transition: fill var(--transition-duration) var(--transition-timing);
+}
+.donut-center {
+  /* width/height set inline (px) on the element for foreignObject reliability. */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-8) var(--space-6);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.donut-center__hint {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  fill: var(--color-ink-muted);
+  max-width: 22ch;
+  margin: 0;
+}
+.donut-center__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  fill: var(--accent);
+  margin: 0 0 var(--space-1);
+}
+.donut-center__title {
+  font-size: 1.05rem;
+  line-height: 1.08;
+  fill: var(--color-ink);
+  max-width: 8.2rem;
+  margin: 0 0 var(--space-2);
+  text-wrap: balance;
+}
+.donut-center__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 150px;
+  margin-bottom: var(--space-3);
+}
+.donut-center__bar {
+  flex: 1;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  overflow: hidden;
+}
+.donut-center__fill {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  border-radius: var(--radius-full);
+  transform-origin: left center;
+}
+/* Grow the meter from empty each time a new skill is selected (the React `key`
+   on this element remounts it, replaying the animation). */
+@media (prefers-reduced-motion: no-preference) {
+  .donut-center__fill {
+    animation: donut-meter-grow 0.7s var(--transition-timing) both;
+  }
+}
+@keyframes donut-meter-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+.donut-center__pct {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  fill: var(--color-ink-muted);
+  white-space: nowrap;
+}
+.donut-center__summary {
+  font-size: 0.72rem;
+  line-height: 1.2;
+  fill: var(--color-ink);
+  margin: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .donut-center__summary {
+    font-size: 0.68rem;
+  }
+  .donut-center__title {
+    font-size: 1rem;
+    max-width: 7.8rem;
+  }
+}

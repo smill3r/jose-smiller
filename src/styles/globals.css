@@ -1,0 +1,304 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap");
+@import "./design-system.css";
+@import "./content.css";
+@import "./case-study.css";
+@import "./diagram.css";
+@import "./tech-stack.css";
+@import "./education.css";
+@import "./footer.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Lenis drives scrolling; disable native smooth-scroll so they don't fight.
+   When Lenis is active it adds .lenis-smooth to <html>. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* ===== Layout utilities ===== */
+.container {
+  width: min(100% - 2 * var(--space-6), 1100px);
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--space-24);
+  position: relative;
+  overflow: clip; /* keep decorative shapes from spilling horizontally */
+}
+
+/* Offset anchored sections so the fixed nav doesn't overlap their tops. */
+[id] {
+  scroll-margin-top: 84px;
+}
+
+/* Color blocking lives on cards/accents, NOT the page background. Each block
+   class just exposes its family's --accent (headings/shapes) and --block-fill
+   (card tint); the page itself stays the clear cream --color-bg. */
+.block-peach {
+  --accent: var(--peach-accent);
+  --block-fill: var(--peach);
+}
+.block-periwinkle {
+  --accent: var(--periwinkle-accent);
+  --block-fill: var(--periwinkle);
+}
+.block-butter {
+  --accent: var(--butter-accent);
+  --block-fill: var(--butter);
+}
+.block-mint {
+  --accent: var(--mint-accent);
+  --block-fill: var(--mint);
+}
+.block-lavender {
+  --accent: var(--lavender-accent);
+  --block-fill: var(--lavender);
+}
+
+/* Soft-tinted card surface: the pastel reads here instead of on the section. */
+.card-tinted {
+  background: color-mix(in srgb, var(--block-fill) 40%, var(--color-surface));
+  /* border: 1px solid color-mix(in srgb, var(--block-fill) 60%, var(--color-outline)); */
+}
+
+/* Mono section eyebrow label (e.g. "# Case Studies") */
+.section-indicator {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent, var(--color-accent));
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.section-header {
+  font-family: var(--font-serif);
+  font-size: var(--text-h1);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+}
+
+/* ===== Accessibility helpers ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-outline-strong);
+  border-radius: var(--radius-full);
+}
+
+/* ===== Top navigation ===== */
+.topnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: color-mix(in srgb, var(--color-bg) 82%, transparent);
+  backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--color-outline);
+  will-change: transform;
+}
+
+.topnav__progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+.topnav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.topnav__logo {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.topnav__logo-dot {
+  color: var(--color-accent);
+}
+
+.topnav__nav ul {
+  display: flex;
+  gap: var(--space-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.topnav__nav a {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  text-decoration: none;
+  color: var(--color-ink-muted);
+  padding: var(--space-1) 0;
+  position: relative;
+  transition: color var(--transition-duration) var(--transition-timing);
+}
+
+.topnav__nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 100%;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform var(--transition-duration) var(--transition-spring);
+}
+
+.topnav__nav a:hover,
+.topnav__nav a.is-active {
+  color: var(--color-ink);
+}
+.topnav__nav a.is-active::after {
+  transform: scaleX(1);
+}
+
+.topnav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.theme-toggle,
+.topnav__burger {
+  background: none;
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-full);
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--color-ink);
+  transition: border-color var(--transition-duration) var(--transition-timing);
+}
+.theme-toggle:hover,
+.topnav__burger:hover {
+  border-color: var(--color-accent);
+}
+
+.topnav__burger {
+  display: none;
+}
+
+/* Mobile: collapse nav into a slide-down menu. */
+@media (max-width: 720px) {
+  .topnav__burger {
+    display: grid;
+  }
+  .topnav__nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-outline);
+    transform: translateY(-12px);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity var(--transition-duration) var(--transition-timing),
+      transform var(--transition-duration) var(--transition-timing);
+  }
+  .topnav__nav.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .topnav__nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: var(--space-4) var(--space-6);
+  }
+  .topnav__nav li {
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-outline);
+  }
+  .topnav__nav li:last-child {
+    border-bottom: none;
+  }
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

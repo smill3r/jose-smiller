@@ -1,0 +1,108 @@
+/* ===== Case studies ===== */
+.case-studies__intro {
+  padding-bottom: var(--space-12);
+}
+.case-studies__lede {
+  margin-top: var(--space-4);
+  font-size: var(--text-body-lg);
+  color: var(--color-ink-muted);
+  max-width: 56ch;
+}
+
+/* Each study is a full-bleed pastel band. */
+.case-study {
+  padding-block: var(--space-24);
+  scroll-margin-top: 80px;
+}
+
+.case-study__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+/* Alternate the diagram to the opposite side on odd cards. */
+.case-study--flip .case-study__figure {
+  order: -1;
+}
+
+.case-study__meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}
+.case-study__title {
+  font-size: var(--text-h2);
+  margin-bottom: var(--space-6);
+  max-width: 18ch;
+}
+.case-study__label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin: var(--space-6) 0 var(--space-2);
+}
+.case-study__body {
+  color: var(--color-ink);
+  max-width: 54ch;
+}
+
+.case-study__toggle {
+  margin-top: var(--space-6);
+  background: var(--accent);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: var(--space-3) var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition-duration) var(--transition-spring);
+}
+.case-study__toggle:hover {
+  transform: translateY(-2px);
+}
+
+/* Height/opacity are animated inline by the Collapse component; the first
+   child's own top margin is clipped while collapsed (overflow:hidden). */
+.case-study__details {
+  margin-top: 0;
+}
+.case-study__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.case-study__steps li {
+  padding-left: var(--space-4);
+  border-left: 3px solid var(--accent);
+  color: var(--color-ink);
+  max-width: 54ch;
+}
+
+/* Diagram figure panel — this is where the section's pastel reads. */
+.case-study__figure {
+  margin: 0;
+  background: color-mix(in srgb, var(--block-fill) 40%, var(--color-surface));
+  /* border: 1px solid color-mix(in srgb, var(--block-fill) 60%, var(--color-outline)); */
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+}
+
+@media (max-width: 860px) {
+  .case-study__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  /* Keep the diagram below the text consistently on mobile. */
+  .case-study--flip .case-study__figure {
+    order: 0;
+  }
+}

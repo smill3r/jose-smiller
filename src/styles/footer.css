@@ -1,0 +1,116 @@
+/* ===== Contact / footer ===== */
+.contact__headline {
+  font-size: var(--text-h1);
+  max-width: 20ch;
+  margin-top: var(--space-4);
+}
+.contact__lede {
+  margin-top: var(--space-4);
+  font-size: var(--text-body-lg);
+  color: var(--color-ink);
+  max-width: 50ch;
+}
+
+.contact__links {
+  list-style: none;
+  margin: var(--space-12) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+/* ── Base button ── */
+.contact-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-6);
+  transition:
+    transform 360ms var(--transition-spring),
+    border-radius 360ms var(--transition-spring),
+    box-shadow 360ms var(--transition-timing);
+  will-change: transform, border-radius;
+  text-align: center;
+  min-height: 160px;
+}
+
+.contact-btn:hover {
+  transform: scale(1.1) rotate(-2deg);
+  border-radius: 44% 56% 58% 42% / 48% 42% 58% 52%;
+  box-shadow: 0 12px 32px -8px color-mix(in srgb, currentColor 35%, transparent);
+}
+
+/* ── Icon ── */
+.contact-btn__icon {
+  font-size: 2.25rem;
+  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 40;
+  line-height: 1;
+  transition: transform 360ms var(--transition-spring);
+}
+
+.contact-btn:hover .contact-btn__icon {
+  transform: scale(1.15) rotate(6deg);
+}
+
+/* ── Text ── */
+.contact-btn__label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.75;
+}
+.contact-btn__value {
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  font-weight: 600;
+  word-break: break-all;
+}
+
+/* ── Per-color variants ── */
+.contact-btn--peach {
+  background: var(--peach);
+  color: var(--peach-accent);
+}
+.contact-btn--periwinkle {
+  background: var(--periwinkle);
+  color: var(--periwinkle-accent);
+}
+.contact-btn--butter {
+  background: var(--butter);
+  color: var(--butter-accent);
+}
+.contact-btn--mint {
+  background: var(--mint);
+  color: var(--mint-accent);
+}
+
+/* ── Copyright ── */
+.contact__copy {
+  margin-top: var(--space-16);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-ink-muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .contact__links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .contact__links {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+  .contact-btn {
+    min-height: 130px;
+    padding: var(--space-6) var(--space-4);
+  }
+}

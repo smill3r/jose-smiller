@@ -1,0 +1,113 @@
+/* ===== Case-study SVG diagrams ===== */
+.diagram {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* Strokes & fills driven by the section's --accent, with a shared error red. */
+.dg-stroke-accent {
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.dg-stroke-error {
+  stroke: #d2603a;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.dg-fill-accent {
+  fill: var(--accent);
+}
+
+/* Neutral panels (clean layers, DAG nodes) */
+.dg-panel {
+  fill: var(--color-surface);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.dg-origin {
+  fill: var(--color-ink);
+}
+
+/* Chart axes / bar tracks */
+.dg-axis {
+  stroke: var(--color-outline-strong);
+  stroke-width: 2;
+}
+.dg-bar-track {
+  fill: color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+/* Text */
+.dg-label,
+.dg-sublabel,
+.dg-node-label {
+  font-family: var(--font-mono);
+  fill: var(--color-ink-muted);
+}
+.dg-label {
+  font-size: 13px;
+}
+.dg-sublabel {
+  font-size: 11px;
+}
+.dg-node-label {
+  font-size: 11px;
+  fill: var(--color-ink);
+}
+.dg-counter {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 600;
+  fill: var(--accent);
+}
+
+/* ===== Filled DAG nodes (serverless) ===== */
+.dg-dag-fill {
+  fill: var(--accent);
+}
+.dg-node-index {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 14px;
+  fill: var(--color-bg);
+}
+.dg-node-caption {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  fill: var(--color-ink);
+}
+
+/* ===== Global rollout (globe + lanes + cache) ===== */
+.dg-bar-fill {
+  fill: var(--accent);
+}
+.dg-globe {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  opacity: 0.55;
+  fill: none;
+}
+.dg-origin-icon,
+.dg-site,
+.dg-cache {
+  fill: var(--accent);
+}
+.dg-arc {
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-dasharray: 2 6;
+  stroke-linecap: round;
+  fill: none;
+}
+.dg-cache-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--color-bg);
+}

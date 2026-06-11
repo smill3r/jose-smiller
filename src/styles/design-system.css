@@ -1,0 +1,124 @@
+/**
+ * Design tokens — "Pastel Color-Blocking" system.
+ * Light-first, warm cream base with five pastel section families.
+ * Each family pairs a soft fill (block background) with a deeper accent
+ * used for headings/shapes/underlines. Body text always uses ink so that
+ * contrast on every pastel block clears WCAG AA.
+ */
+
+:root {
+  /* Surfaces & text */
+  --color-bg: #fbf7f0; /* page background (warm cream) */
+  --color-surface: #ffffff; /* cards / raised blocks */
+  --color-ink: #1e1b18; /* primary text */
+  --color-ink-muted: #5a5450; /* secondary text */
+  --color-outline: #e6ddd0; /* hairline borders */
+  --color-outline-strong: #cabfaf; /* stronger borders */
+
+  /* Pastel block families: <fill> for backgrounds, <accent> for headings/shapes.
+     Accents are intentionally deep enough to read as text on cream and on their fill. */
+  --peach: #ffb59e;
+  --peach-accent: #c8431e;
+  --periwinkle: #b3c5ff;
+  --periwinkle-accent: #3a52c4;
+  --butter: #fbdd78;
+  --butter-accent: #946a00;
+  --mint: #a9e6bc;
+  --mint-accent: #1c7d46;
+  --lavender: #d9b8f7;
+  --lavender-accent: #7a37b5;
+
+  /* Default accent (used by links, focus rings, progress bar) */
+  --color-accent: var(--periwinkle-accent);
+
+  /* Spacing scale (4px baseline) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Typography */
+  --font-serif: "Newsreader", Georgia, serif;
+  --font-sans: "Work Sans", system-ui, sans-serif;
+  --font-mono: "Space Grotesk", ui-monospace, monospace;
+
+  /* Fluid type scale (clamp keeps the hero punchy without overflowing mobile) */
+  --text-display: clamp(2.75rem, 7vw, 5.5rem);
+  --text-h1: clamp(2.25rem, 5vw, 3.5rem);
+  --text-h2: clamp(1.75rem, 3.5vw, 2.5rem);
+  --text-h3: clamp(1.25rem, 2vw, 1.5rem);
+  --text-body-lg: 1.125rem;
+  --text-body: 1rem;
+  --text-label: 0.8125rem;
+
+  /* Quirky soft-brutalist radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  --radius-blob: 42% 58% 63% 37% / 41% 44% 56% 59%;
+  --radius-full: 9999px;
+
+  /* Motion */
+  --transition-duration: 280ms;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  color-scheme: light;
+}
+
+/* Dark mode: darker warm-neutral base; pastels stay as accents but dimmed. */
+html.dark {
+  --color-bg: #1a1714;
+  --color-surface: #241f1b;
+  --color-ink: #f3ede4;
+  --color-ink-muted: #b3a9a0;
+  --color-outline: #3a332c;
+  --color-outline-strong: #4a4239;
+
+  /* Vivid fills on a dark base; bright accents for buttons/headings */
+  --peach: #7a4632;
+  --peach-accent: #ff9d7a;
+  --periwinkle: #36447a;
+  --periwinkle-accent: #9db2ff;
+  --butter: #5e4d1f;
+  --butter-accent: #f0c64e;
+  --mint: #2c5a42;
+  --mint-accent: #6fd99a;
+  --lavender: #503a66;
+  --lavender-accent: #c79df0;
+
+  --color-accent: var(--periwinkle-accent);
+  color-scheme: dark;
+}
+
+/* ===== Base typography ===== */
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+h2 {
+  font-size: var(--text-h2);
+}
+h3 {
+  font-size: var(--text-h3);
+  letter-spacing: -0.01em;
+}
+
+p {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  margin: 0;
+}

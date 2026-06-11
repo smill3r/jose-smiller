@@ -1,0 +1,76 @@
+/* ===== Career timeline ===== */
+.timeline__list {
+  list-style: none;
+  margin: var(--space-12) 0 0;
+  padding: 0;
+  position: relative;
+}
+
+/* Vertical spine */
+.timeline__list::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.timeline__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: var(--space-6);
+  padding: 0 0 var(--space-8) var(--space-8);
+}
+.timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline__node {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg);
+  border: 3px solid var(--accent);
+}
+/* Study entries read as hollow, work entries as filled. */
+.timeline__item--work .timeline__node {
+  background: var(--accent);
+}
+
+.timeline__period {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  color: var(--color-ink);
+  /* Tinted pill so the lavender reads on the component, not the page bg. */
+  background: color-mix(in srgb, var(--block-fill) 45%, var(--color-surface));
+  /* border: 1px solid color-mix(in srgb, var(--block-fill) 65%, var(--color-outline)); */
+  border-radius: var(--radius-full);
+  padding: var(--space-1) var(--space-3);
+  align-self: start;
+  justify-self: start;
+}
+.timeline__role {
+  font-size: var(--text-h3);
+}
+.timeline__org {
+  font-weight: 600;
+  margin-top: 2px;
+}
+.timeline__note {
+  color: var(--color-ink-muted);
+  margin-top: var(--space-1);
+  font-size: 0.9375rem;
+}
+
+@media (max-width: 640px) {
+  .timeline__item {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+}

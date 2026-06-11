@@ -1,0 +1,126 @@
+/* ===== Hero ===== */
+.hero {
+  --accent: var(--periwinkle-accent);
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: var(--space-24);
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+}
+
+.hero__headline {
+  font-family: var(--font-serif);
+  font-size: var(--text-display);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  max-width: 16ch;
+  margin: 0 0 var(--space-8);
+}
+
+/* Each word sits in a clipping wrap so it can slide up from below on load. */
+.hero__word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* inline-block collapses the whitespace between wraps; restore word spacing */
+  margin-right: 0.26em;
+}
+.hero__word {
+  display: inline-block;
+}
+.hero__word--accent {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero__intro {
+  display: grid;
+  gap: var(--space-8);
+  max-width: 60ch;
+}
+
+.hero__lead {
+  font-size: var(--text-body-lg);
+  color: var(--color-ink);
+}
+
+/* Focus box: mono callouts */
+.focus-box {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-6);
+  display: grid;
+  gap: var(--space-4);
+  background: var(--color-surface);
+  /* border: 1px solid var(--color-outline); */
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  line-height: 1.5;
+}
+.focus-box__label {
+  display: block;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
+}
+
+/* ===== Decorative shapes ===== */
+.hero__shapes {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: clip;
+}
+.hero__shape {
+  position: absolute;
+  display: block;
+}
+.hero__shape--blob {
+  top: 12%;
+  right: 6%;
+  width: 220px;
+  height: 220px;
+  background: var(--peach);
+  border-radius: var(--radius-blob);
+}
+.hero__shape--ring {
+  bottom: 14%;
+  right: 24%;
+  width: 120px;
+  height: 120px;
+  /* border: 14px solid var(--mint); */
+  border-radius: var(--radius-full);
+}
+.hero__shape--squiggle {
+  top: 20%;
+  left: 4%;
+  width: 90px;
+  height: 90px;
+  background: var(--butter);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+.hero__shape--pill {
+  bottom: 22%;
+  left: 12%;
+  width: 160px;
+  height: 56px;
+  background: var(--lavender);
+  border-radius: var(--radius-full);
+}
+
+@media (max-width: 720px) {
+  .hero__shape--blob {
+    width: 130px;
+    height: 130px;
+  }
+  .hero__shape--pill {
+    display: none;
+  }
+}
