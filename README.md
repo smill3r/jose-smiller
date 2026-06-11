@@ -1,43 +1,53 @@
-# Astro Starter Kit: Minimal
+# Jose Smiller — Portfolio
 
-```sh
-npm create astro@latest -- --template minimal
-```
+A vertical, scroll-driven portfolio that tells the story of my engineering work
+through animated case studies. Built as a statically-hosted **Astro** shell whose
+every section is a hydrated **React** island, with **GSAP** + **Lenis** powering
+the scroll animations and a pastel color-blocking theme.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-## 🚀 Project Structure
+- **Astro** — static site shell, routing, build (`output: static`).
+- **React islands** — each section is a `.tsx` component hydrated with
+  `client:load` / `client:visible`.
+- **GSAP** (ScrollTrigger, DrawSVG) — scroll reveals and the bespoke SVG case-study
+  diagrams. Registered once in `src/lib/gsap.ts`.
+- **Lenis** — smooth scroll, synced to ScrollTrigger in `SmoothScroll.tsx`.
+- **Plain CSS** with custom-property design tokens — `src/styles/`.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Project structure
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/
+├── lib/gsap.ts              # GSAP + plugin registration, reduced-motion flag
+├── layouts/Main.astro       # <head>, theme-init script, mounts SmoothScroll + TopNav
+├── pages/index.astro        # Composes the section islands
+├── data/caseStudies.ts      # Case-study content (separated from presentation)
+├── components/react/
+│   ├── SmoothScroll.tsx     # Lenis ⇄ ScrollTrigger bridge
+│   ├── Reveal.tsx           # Reusable scroll-in reveal wrapper
+│   ├── TopNav.tsx           # Sticky nav, scroll progress, active link, mobile menu
+│   ├── Hero / Timeline / CaseStudies / CaseStudyCard / TechStack / StackCard / Footer
+│   └── diagrams/            # 4 animated SVG case-study diagrams
+└── styles/                  # design-system (tokens) + per-section CSS
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Accessibility
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Built in, not bolted on: semantic landmarks, keyboard-operable controls with
+`aria-expanded`/`aria-controls`, visible focus, `aria-hidden` decorative diagrams
+with `sr-only` text alternatives, WCAG-AA contrast on every pastel block, and a
+full `prefers-reduced-motion` path (Lenis off, reveals/diagrams render final state).
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Requirements
 
-## 🧞 Commands
+> **Node ≥ 22.12** is required by Astro 6. If you use nvm: `nvm use 22`.
 
-All commands are run from the root of the project, from a terminal:
+## Commands
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Command           | Action                                      |
+| :---------------- | :------------------------------------------ |
+| `npm install`     | Install dependencies                        |
+| `npm run dev`     | Dev server at `localhost:4321`              |
+| `npm run build`   | Build the static site to `./dist/`          |
+| `npm run preview` | Preview the production build locally        |
