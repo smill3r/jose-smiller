@@ -87,6 +87,35 @@
   max-width: 54ch;
 }
 
+.case-study__links {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.case-study__link-item {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.case-study__link {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.case-study__link:hover {
+  text-decoration: underline;
+}
+
+.case-study__link-note {
+  color: var(--color-ink-muted);
+  font-size: 0.95rem;
+  max-width: 56ch;
+}
+
 /* Diagram figure panel — this is where the section's pastel reads. */
 .case-study__figure {
   margin: 0;

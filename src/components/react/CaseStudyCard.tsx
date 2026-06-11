@@ -1,11 +1,11 @@
 import { useId, useState } from "react";
 import type { CaseStudy } from "../../data/caseStudies";
-import Reveal from "./Reveal";
 import Collapse from "./Collapse";
 import AvantioDiagram from "./diagrams/AvantioDiagram";
-import XperienceDiagram from "./diagrams/XperienceDiagram";
 import GlobalRolloutDiagram from "./diagrams/GlobalRolloutDiagram";
 import ServerlessDiagram from "./diagrams/ServerlessDiagram";
+import XperienceDiagram from "./diagrams/XperienceDiagram";
+import Reveal from "./Reveal";
 
 const DIAGRAMS = {
   avantio: AvantioDiagram,
@@ -62,6 +62,31 @@ export default function CaseStudyCard({ study, index }: Props) {
 
             <p className="case-study__label">Impact</p>
             <p className="case-study__body">{study.impact}</p>
+
+            {study.links?.length ? (
+              <>
+                <p className="case-study__label">Example</p>
+                <ul className="case-study__links">
+                  {study.links.map((link) => (
+                    <li key={link.href} className="case-study__link-item">
+                      <a
+                        href={link.href}
+                        className="case-study__link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.label}
+                      </a>
+                      {link.note ? (
+                        <span className="case-study__link-note">
+                          {link.note}
+                        </span>
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
           </Collapse>
         </Reveal>
 

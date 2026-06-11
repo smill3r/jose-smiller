@@ -14,6 +14,12 @@ export interface StrategyStep {
   body: string;
 }
 
+export interface CaseStudyLink {
+  label: string;
+  href: string;
+  note?: string;
+}
+
 export interface CaseStudy {
   id: string;
   meta: string;
@@ -23,6 +29,7 @@ export interface CaseStudy {
   impact: string;
   diagram: DiagramId;
   block: BlockColor;
+  links?: CaseStudyLink[];
   /** Concise text alternative describing the (decorative) diagram. */
   diagramAlt: string;
 }
@@ -79,6 +86,18 @@ export const caseStudies: CaseStudy[] = [
       "Fluid, high-frame-rate experiences that stayed stable under heavy public use — closing the gap between creative vision and technical performance.",
     diagram: "xperience",
     block: "periwinkle",
+    links: [
+      {
+        label: "See the recreated experience",
+        href: "https://smill3r.github.io/motion/",
+        note: "A similar interactive concept with a few extra touches of my own, developed with AI assistance.",
+      },
+      {
+        label: "Open the GitHub repo",
+        href: "https://github.com/smill3r/motion",
+        note: "A playful prototype and learning sandbox, not production-grade.",
+      },
+    ],
     diagramAlt:
       "A particle-recycling loop next to a chart contrasting spiky garbage-collection pauses against a flat, stable memory line.",
   },

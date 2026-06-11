@@ -22,6 +22,14 @@ const LINKS = [
     icon: "call",
     colorClass: "contact-btn--butter",
   },
+  {
+    label: "GitHub",
+    value: "smill3r",
+    href: "https://github.com/smill3r",
+    icon: "code",
+    colorClass: "contact-btn--mint",
+    note: "Small experiments and exercises I used to learn new things — not production-grade.",
+  },
   /* {
     label: "Portfolio",
     value: "jsmiller.netlify.app",
@@ -56,7 +64,13 @@ export default function Footer() {
                 rel={
                   l.href.startsWith("http") ? "noopener noreferrer" : undefined
                 }
-                aria-label={`${l.label}: ${l.value}`}
+                aria-label={
+                  l.note
+                    ? `${l.label}: ${l.value} — ${l.note}`
+                    : `${l.label}: ${l.value}`
+                }
+                title={l.note || undefined}
+                data-tooltip={l.note || undefined}
               >
                 <span
                   className="contact-btn__icon material-symbols-rounded"

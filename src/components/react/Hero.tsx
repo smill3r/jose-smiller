@@ -22,6 +22,11 @@ export default function Hero() {
           { y: 24, opacity: 0, duration: 0.7, stagger: 0.12 },
           "-=0.3",
         )
+        .from(
+          ".hero__portrait",
+          { y: 32, opacity: 0, duration: 0.9 },
+          "-=0.9",
+        )
         // Gentle, endless float on the decorative shapes.
         .add(() => {
           gsap.to(".hero__shape", {
@@ -49,41 +54,52 @@ export default function Hero() {
       </div>
 
       <div className="container hero__inner">
-        <p className="section-indicator"># Profile</p>
+        <div className="hero__content">
+          <p className="section-indicator"># Profile</p>
 
-        <h1 className="hero__headline">
-          {HEADLINE.map((word, i) => (
-            <span className="hero__word-wrap" key={i}>
-              <span className={`hero__word${word === "refined" ? " hero__word--accent" : ""}`}>
-                {word}
-              </span>{" "}
-            </span>
-          ))}
-        </h1>
+          <h1 className="hero__headline">
+            {HEADLINE.map((word, i) => (
+              <span className="hero__word-wrap" key={i}>
+                <span className={`hero__word${word === "refined" ? " hero__word--accent" : ""}`}>
+                  {word}
+                </span>{" "}
+              </span>
+            ))}
+          </h1>
 
-        <div className="hero__intro">
-          <p className="hero__lead">
-            Hi, I'm <strong>Jose Smiller</strong> — a Senior Software Engineer with{" "}
-            <strong>7+ years</strong> building scalable web &amp; mobile apps across
-            fintech, oil &amp; gas, SaaS, and interactive media. I rescue legacy
-            codebases, architect global rollouts, and turn messy requirements into
-            resilient systems.
-          </p>
+          <div className="hero__intro">
+            <p className="hero__lead">
+              Hi, I'm <strong>Jose Smiller</strong> — a Senior Software Engineer with{" "}
+              <strong>7+ years</strong> building scalable web &amp; mobile apps across
+              fintech, oil &amp; gas, SaaS, and interactive media. I rescue legacy
+              codebases, architect global rollouts, and turn messy requirements into
+              resilient systems.
+            </p>
 
-          <ul className="focus-box">
-            <li>
-              <span className="focus-box__label">&gt; The spread</span>
-              Angular, React, TypeScript, Node.js, .NET, and Cloud (AWS).
-            </li>
-            <li>
-              <span className="focus-box__label">&gt; The meat</span>
-              Eager communicator, avid learner, and mentor.
-            </li>
-            <li>
-              <span className="focus-box__label">&gt; Status</span>
-              Open to senior / staff full-stack &amp; frontend roles.
-            </li>
-          </ul>
+            <ul className="focus-box">
+              <li>
+                <span className="focus-box__label">&gt; The spread</span>
+                Angular, React, TypeScript, Node.js, .NET, and Cloud (AWS).
+              </li>
+              <li>
+                <span className="focus-box__label">&gt; The meat</span>
+                Eager communicator, avid learner, and mentor.
+              </li>
+              <li>
+                <span className="focus-box__label">&gt; Status</span>
+                Open to senior / staff full-stack &amp; frontend roles.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="hero__portrait">
+          <img
+            src="/avatar.png"
+            width={520}
+            height={520}
+            alt="Portrait of Jose Smiller"
+          />
         </div>
       </div>
     </section>
