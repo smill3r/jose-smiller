@@ -22,13 +22,13 @@ const LINKS = [
     icon: "call",
     colorClass: "contact-btn--butter",
   },
-  {
+  /* {
     label: "Portfolio",
     value: "jsmiller.netlify.app",
     href: "https://jsmiller.netlify.app",
     icon: "language",
     colorClass: "contact-btn--mint",
-  },
+  }, */
 ];
 
 export default function Footer() {
@@ -41,8 +41,8 @@ export default function Footer() {
             Got a messy codebase or an ambitious rollout?
           </h2>
           <p className="contact__lede">
-            I'm open to senior / staff full-stack &amp; frontend roles. Let's build
-            something resilient.
+            I'm open to senior / staff full-stack &amp; frontend roles. Let's
+            build something resilient.
           </p>
         </Reveal>
 
@@ -53,10 +53,15 @@ export default function Footer() {
                 href={l.href}
                 className={`contact-btn ${l.colorClass}`}
                 target={l.href.startsWith("http") ? "_blank" : undefined}
-                rel={l.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                rel={
+                  l.href.startsWith("http") ? "noopener noreferrer" : undefined
+                }
                 aria-label={`${l.label}: ${l.value}`}
               >
-                <span className="contact-btn__icon material-symbols-rounded" aria-hidden="true">
+                <span
+                  className="contact-btn__icon material-symbols-rounded"
+                  aria-hidden="true"
+                >
                   {l.icon}
                 </span>
                 <span className="contact-btn__label">{l.label}</span>
@@ -67,7 +72,8 @@ export default function Footer() {
         </ul>
 
         <p className="contact__copy">
-          © {new Date().getFullYear()} Jose Smiller · Built with Astro, React &amp; GSAP.
+          © {new Date().getFullYear()} Jose Smiller · Built with Astro, React
+          &amp; GSAP.
         </p>
       </div>
     </footer>
