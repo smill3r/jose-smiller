@@ -77,6 +77,10 @@ body {
   --accent: var(--lavender-accent);
   --block-fill: var(--lavender);
 }
+.block-rose {
+  --accent: var(--rose-accent);
+  --block-fill: var(--rose);
+}
 
 /* Soft-tinted card surface: the pastel reads here instead of on the section. */
 .card-tinted {

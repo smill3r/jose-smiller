@@ -27,6 +27,8 @@
   --mint-accent: #1c7d46;
   --lavender: #d9b8f7;
   --lavender-accent: #7a37b5;
+  --rose: #ffc5d2;
+  --rose-accent: #b64163;
 
   /* Default accent (used by links, focus rings, progress bar) */
   --color-accent: var(--periwinkle-accent);
@@ -92,6 +94,8 @@ html.dark {
   --mint-accent: #6fd99a;
   --lavender: #503a66;
   --lavender-accent: #c79df0;
+  --rose: #6d3142;
+  --rose-accent: #ffc2d3;
 
   --color-accent: var(--periwinkle-accent);
   color-scheme: dark;

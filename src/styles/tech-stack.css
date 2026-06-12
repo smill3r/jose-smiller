@@ -9,7 +9,7 @@
 /* ===== Donut skill explorer ===== */
 .skill-donut {
   margin-top: var(--space-12);
-  width: min(100%, 560px);
+  width: min(100%, 672px); /* ~20% larger than the previous cap */
   margin-inline: auto;
 }
 .skill-donut__svg {

@@ -29,7 +29,7 @@ export const CATEGORY_BLOCK: Record<SkillCategory, string> = {
   Backend: "block-mint",
   "Cloud & DevOps": "block-lavender",
   "Testing & QA": "block-butter",
-  Practices: "block-periwinkle",
+  Practices: "block-rose",
 };
 
 export const CATEGORY_ORDER: SkillCategory[] = [
@@ -42,9 +42,10 @@ export const CATEGORY_ORDER: SkillCategory[] = [
 ];
 
 /** Pastel family name (drives the CSS color vars `--<family>` / `--<family>-accent`). */
-export const CATEGORY_FAMILY: Record<SkillCategory, string> = Object.fromEntries(
-  CATEGORY_ORDER.map((c) => [c, CATEGORY_BLOCK[c].replace("block-", "")]),
-) as Record<SkillCategory, string>;
+export const CATEGORY_FAMILY: Record<SkillCategory, string> =
+  Object.fromEntries(
+    CATEGORY_ORDER.map((c) => [c, CATEGORY_BLOCK[c].replace("block-", "")]),
+  ) as Record<SkillCategory, string>;
 
 /** Compact label that fits inside a donut arc segment. */
 export const CATEGORY_SHORT: Record<SkillCategory, string> = {

@@ -257,13 +257,9 @@ export default function SkillExplorer() {
           }`}
           onClick={() => setSelected(s)}
           onKeyDown={(e) => onSkillKey(e, s)}
-          onMouseEnter={() =>
-            setTip({ text: `${s.label} · ${s.level}%`, mid: (a0 + a1) / 2 })
-          }
+          onMouseEnter={() => setTip({ text: s.label, mid: (a0 + a1) / 2 })}
           onMouseLeave={() => setTip(null)}
-          onFocus={() =>
-            setTip({ text: `${s.label} · ${s.level}%`, mid: (a0 + a1) / 2 })
-          }
+          onFocus={() => setTip({ text: s.label, mid: (a0 + a1) / 2 })}
           onBlur={() => setTip(null)}
         >
           <path
