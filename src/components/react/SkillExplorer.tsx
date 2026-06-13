@@ -97,7 +97,7 @@ const layout = (active: SkillCategory | null): Wedge[] => {
 };
 
 /** Proficiency-scaled fill opacity, so denser arcs read as deeper expertise. */
-const levelOpacity = (level: number) => 0.4 + (level / 100) * 0.55;
+const levelOpacity = (level: number) => 0.62 + (level / 100) * 0.38;
 
 const wrapSummary = (text: string, maxChars = 30) => {
   const words = text.trim().split(/\s+/);
@@ -218,7 +218,7 @@ export default function SkillExplorer() {
         >
           <path
             d={donutSeg(w.a0, w.a1)}
-            style={{ fill: familyVar(w.cat), stroke: accentVar(w.cat) }}
+            style={{ fill: familyVar(w.cat) }}
           />
           {!openCat && (
             <>
@@ -267,7 +267,6 @@ export default function SkillExplorer() {
             style={{
               fill: familyVar(w.cat),
               fillOpacity: isSel ? 1 : levelOpacity(s.level),
-              stroke: accentVar(w.cat),
             }}
           />
           <path id={pid} d={labelPath(a0, a1)} fill="none" />

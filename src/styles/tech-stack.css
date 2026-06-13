@@ -1,21 +1,60 @@
-/* ===== Skill explorer (clickable cloud + detail panel) ===== */
+/* ===== Tech Stack — two-column layout + skill explorer ===== */
+
+/* ── Two-column layout (intro + donut) ── */
+.tech-stack__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.tech-stack__intro {
+  display: flex;
+  flex-direction: column;
+}
+
 .tech-stack__lede {
   margin-top: var(--space-4);
   font-size: var(--text-body-lg);
   color: var(--color-ink-muted);
-  max-width: 48ch;
+  max-width: 38ch;
+}
+
+/* ── Category legend (sits below the lede in the left column) ── */
+.tech-stack__legend {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tech-stack__legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.04em;
+  color: var(--color-ink-muted);
+}
+
+.tech-stack__legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 /* ===== Donut skill explorer ===== */
 .skill-donut {
-  margin-top: var(--space-12);
-  width: min(100%, 672px); /* ~20% larger than the previous cap */
-  margin-inline: auto;
+  width: 100%;
 }
 .skill-donut__svg {
   width: 100%;
   height: auto;
-  overflow: visible; /* let orbiting nodes + tooltips spill past the ring */
+  overflow: visible;
   display: block;
 }
 
@@ -25,20 +64,23 @@
   outline: none;
 }
 .donut-arc path {
-  fill-opacity: 0.6;
-  stroke-width: 1.6;
-  stroke-opacity: 0.35;
-  transition: fill-opacity var(--transition-duration) var(--transition-timing);
+  fill-opacity: 0.88;
+  stroke: none;
+  transition:
+    fill-opacity var(--transition-duration) var(--transition-timing),
+    filter var(--transition-duration) var(--transition-timing);
 }
 .donut-arc:hover path {
-  fill-opacity: 0.85;
+  fill-opacity: 1;
+  filter: brightness(1.06);
 }
 .donut-arc.is-dimmed path {
-  fill-opacity: 0.22;
-  stroke-opacity: 0.12;
+  fill-opacity: 0.14;
+  filter: grayscale(0.8);
 }
 .donut-arc.is-dimmed:hover path {
-  fill-opacity: 0.45;
+  fill-opacity: 0.55;
+  filter: grayscale(0.2);
 }
 .donut-arc__label {
   font-family: var(--font-mono);
@@ -50,7 +92,6 @@
 }
 .donut-arc:focus-visible path {
   stroke: var(--color-ink);
-  stroke-opacity: 1;
   stroke-width: 2.5;
 }
 
@@ -60,16 +101,18 @@
   outline: none;
 }
 .skill-seg path:first-child {
-  stroke-width: 1.4;
-  stroke-opacity: 0.45;
-  transition: fill-opacity var(--transition-duration) var(--transition-timing);
+  stroke: none;
+  transition:
+    fill-opacity var(--transition-duration) var(--transition-timing),
+    filter var(--transition-duration) var(--transition-timing);
 }
 .skill-seg:hover path:first-child {
   fill-opacity: 1 !important;
+  filter: brightness(1.06);
 }
 .skill-seg.is-selected path:first-child {
-  stroke-opacity: 1;
-  stroke-width: 2.2;
+  filter: brightness(0.8) saturate(1.4);
+  stroke-width: 0;
 }
 .skill-seg__label {
   font-family: var(--font-mono);
@@ -80,11 +123,10 @@
 }
 .skill-seg:focus-visible path:first-child {
   stroke: var(--color-ink);
-  stroke-opacity: 1;
   stroke-width: 2.5;
 }
 
-/* textPath centres horizontally; this keeps it on the ring's mid-band. */
+/* textPath centres horizontally; keeps it on the ring's mid-band. */
 .donut-arc__label,
 .skill-seg__label {
   text-anchor: middle;
@@ -112,7 +154,6 @@
   transition: fill var(--transition-duration) var(--transition-timing);
 }
 .donut-center {
-  /* width/height set inline (px) on the element for foreignObject reliability. */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -167,8 +208,6 @@
   border-radius: var(--radius-full);
   transform-origin: left center;
 }
-/* Grow the meter from empty each time a new skill is selected (the React `key`
-   on this element remounts it, replaying the animation). */
 @media (prefers-reduced-motion: no-preference) {
   .donut-center__fill {
     animation: donut-meter-grow 0.7s var(--transition-timing) both;
@@ -191,6 +230,35 @@
   fill: var(--color-ink);
   margin: 0;
   overflow: hidden;
+}
+
+/* ── Mobile: stack columns ── */
+@media (max-width: 900px) {
+  .tech-stack__layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .tech-stack__intro {
+    text-align: center;
+    align-items: center;
+  }
+
+  .tech-stack__lede {
+    max-width: 48ch;
+  }
+
+  .tech-stack__legend {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3) var(--space-6);
+  }
+
+  .skill-donut {
+    max-width: 480px;
+    margin-inline: auto;
+  }
 }
 
 @media (max-width: 480px) {

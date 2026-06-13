@@ -3,6 +3,7 @@ import Main from "../layouts/Main.astro";
 import Hero from "../components/react/Hero.tsx";
 import Timeline from "../components/react/Timeline.tsx";
 import CaseStudies from "../components/react/CaseStudies.tsx";
+import Projects from "../components/react/Projects.tsx";
 import TechStack from "../components/react/TechStack.tsx";
 import Footer from "../components/react/Footer.tsx";
 ---
@@ -12,6 +13,7 @@ import Footer from "../components/react/Footer.tsx";
   <Hero client:load />
   <Timeline client:visible />
   <CaseStudies client:visible />
+  <Projects client:load />
   <TechStack client:visible />
   <Footer client:visible />
 </Main>

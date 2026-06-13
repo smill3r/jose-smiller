@@ -1,0 +1,282 @@
+/* ===== Projects — horizontal scroll ===== */
+
+/* Section height matches the viewport. GSAP wraps it in a pin spacer and
+   overrides position to fixed while active — relative is needed here for the
+   progress bar's absolute positioning when the section is not pinned. */
+.projects {
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
+}
+
+/* Horizontal track — GSAP translates this left as you scroll down */
+.projects__track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+
+/* ── One panel per project — fills the full viewport ── */
+.projects__panel {
+  flex-shrink: 0;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Two-column grid: text left, browser right */
+.projects__panel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+  width: 100%;
+}
+
+.projects__panel--flip .project-spread__visual {
+  order: -1;
+}
+
+/* ── Text column ── */
+.project-spread__index {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+
+/* Ghost/outline headline — editorial centrepiece */
+.project-spread__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  -webkit-text-stroke: 1.5px var(--accent);
+  color: transparent;
+  margin-bottom: var(--space-5);
+}
+
+.project-spread__desc {
+  font-size: var(--text-body);
+  color: var(--color-ink-muted);
+  line-height: 1.7;
+  max-width: 46ch;
+  margin-bottom: var(--space-4);
+}
+
+.project-spread__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin-bottom: var(--space-5);
+}
+
+.project-spread__tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--block-fill) 45%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--block-fill) 70%, var(--color-outline));
+  border-radius: var(--radius-full);
+  padding: 2px var(--space-3);
+  letter-spacing: 0.02em;
+}
+
+.project-spread__links {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.project-spread__link {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--accent);
+  transition: opacity var(--transition-duration) var(--transition-timing);
+}
+
+.project-spread__link:hover {
+  opacity: 0.65;
+}
+
+.project-spread__link--muted {
+  color: var(--color-ink-muted);
+}
+
+/* ── Browser window mockup ── */
+.browser-window {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    0 24px 48px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--color-outline);
+  margin: 0;
+  transform: rotate(1deg);
+  transition: transform var(--transition-duration) var(--transition-timing);
+}
+
+.projects__panel--flip .browser-window {
+  transform: rotate(-1deg);
+}
+
+.browser-window:hover {
+  transform: rotate(0deg) scale(1.01);
+}
+
+.browser-window__bar {
+  background: color-mix(in srgb, var(--block-fill) 35%, var(--color-surface));
+  border-bottom: 1px solid var(--color-outline);
+  height: 36px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-4);
+}
+
+.browser-window__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.browser-window__dot:nth-child(1) { background: #ff5f57; }
+.browser-window__dot:nth-child(2) { background: #febc2e; }
+.browser-window__dot:nth-child(3) { background: #28c840; }
+
+.browser-window__url {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-ink-muted);
+  margin-left: var(--space-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  background: color-mix(in srgb, var(--color-outline) 40%, var(--color-surface));
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-sm);
+  padding: 2px var(--space-3);
+}
+
+.browser-window__screen {
+  aspect-ratio: 16 / 10;
+  background: color-mix(in srgb, var(--block-fill) 50%, var(--color-surface));
+  overflow: hidden;
+}
+
+.browser-window__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.browser-window__placeholder {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Progress bar (mirrors the nav bar pattern) ── */
+.projects__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-outline);
+}
+
+.projects__progress-bar {
+  height: 100%;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  will-change: transform;
+}
+
+/* ── Mobile: revert to vertical stack ── */
+@media (max-width: 768px) {
+  .projects {
+    height: auto;
+    overflow: visible;
+  }
+
+  .projects__track {
+    flex-direction: column;
+    will-change: auto;
+  }
+
+  .projects__panel {
+    width: 100%;
+    height: auto;
+    padding-block: var(--space-12);
+    border-top: 1px solid var(--color-outline);
+  }
+
+  .projects__panel:last-child {
+    border-bottom: 1px solid var(--color-outline);
+  }
+
+  .projects__panel-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .projects__panel--flip .project-spread__visual {
+    order: 0;
+  }
+
+  .browser-window,
+  .projects__panel--flip .browser-window {
+    transform: none;
+  }
+
+  .projects__progress {
+    display: none;
+  }
+}
+
+/* ── Reduced motion: same vertical stack as mobile ── */
+@media (prefers-reduced-motion: reduce) {
+  .projects {
+    height: auto;
+    overflow: visible;
+  }
+
+  .projects__track {
+    flex-direction: column;
+    will-change: auto;
+  }
+
+  .projects__panel {
+    width: 100%;
+    height: auto;
+    padding-block: var(--space-16);
+    border-top: 1px solid var(--color-outline);
+  }
+
+  .projects__panel:last-child {
+    border-bottom: 1px solid var(--color-outline);
+  }
+
+  .browser-window,
+  .projects__panel--flip .browser-window {
+    transform: none;
+  }
+
+  .projects__progress {
+    display: none;
+  }
+}
