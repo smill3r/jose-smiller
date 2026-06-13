@@ -4,15 +4,17 @@ interface Props {
   project: Project;
   index: number;
   isFirst?: boolean;
+  isActive?: boolean;
 }
 
-export default function ProjectSpread({ project, index, isFirst }: Props) {
+export default function ProjectSpread({ project, index, isFirst, isActive = true }: Props) {
   const flipped = index % 2 === 1;
   const displayUrl = project.live?.replace(/^https?:\/\//, "");
 
   return (
     <article
       className={`projects__panel block-${project.block}${flipped ? " projects__panel--flip" : ""}`}
+      aria-hidden={!isActive || undefined}
     >
       <div className="container projects__panel-grid">
         <div className="project-spread__text">

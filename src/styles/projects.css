@@ -1,19 +1,16 @@
-/* ===== Projects — horizontal scroll ===== */
+/* ===== Projects — manual carousel ===== */
 
-/* Section height matches the viewport. GSAP wraps it in a pin spacer and
-   overrides position to fixed while active — relative is needed here for the
-   progress bar's absolute positioning when the section is not pinned. */
 .projects {
   overflow: hidden;
   height: 100vh;
   position: relative;
 }
 
-/* Horizontal track — GSAP translates this left as you scroll down */
+/* Horizontal track — CSS transition, driven by JS index state */
 .projects__track {
   display: flex;
   height: 100%;
-  will-change: transform;
+  transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* ── One panel per project — fills the full viewport ── */
@@ -23,6 +20,9 @@
   height: 100%;
   display: flex;
   align-items: center;
+  /* Extra bottom padding so content clears the nav bar */
+  padding-bottom: 64px;
+  box-sizing: border-box;
 }
 
 /* Two-column grid: text left, browser right */
@@ -188,25 +188,80 @@
   height: 100%;
 }
 
-/* ── Progress bar (mirrors the nav bar pattern) ── */
-.projects__progress {
+/* ── Carousel navigation ── */
+.projects__nav {
   position: absolute;
-  bottom: 0;
+  bottom: var(--space-6);
   left: 0;
   right: 0;
-  height: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  pointer-events: none;
+}
+
+.projects__arrow,
+.projects__dot {
+  pointer-events: all;
+}
+
+.projects__arrow {
+  background: none;
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-full);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--color-ink);
+  transition:
+    background var(--transition-duration) var(--transition-timing),
+    color var(--transition-duration) var(--transition-timing),
+    border-color var(--transition-duration) var(--transition-timing),
+    opacity var(--transition-duration) var(--transition-timing);
+}
+
+.projects__arrow:hover:not(:disabled) {
+  background: var(--color-ink);
+  color: var(--color-bg);
+  border-color: var(--color-ink);
+}
+
+.projects__arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.projects__dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.projects__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
   background: var(--color-outline);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    width var(--transition-duration) var(--transition-timing),
+    background var(--transition-duration) var(--transition-timing);
 }
 
-.projects__progress-bar {
-  height: 100%;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-  will-change: transform;
+.projects__dot--active {
+  width: 24px;
+  background: var(--color-ink);
 }
 
-/* ── Mobile: revert to vertical stack ── */
+/* ── Mobile: revert to vertical stack, hide carousel nav ── */
 @media (max-width: 768px) {
   .projects {
     height: auto;
@@ -215,18 +270,25 @@
 
   .projects__track {
     flex-direction: column;
-    will-change: auto;
+    transform: none !important;
+    transition: none;
   }
 
   .projects__panel {
     width: 100%;
     height: auto;
+    padding-bottom: 0;
     padding-block: var(--space-12);
     border-top: 1px solid var(--color-outline);
   }
 
   .projects__panel:last-child {
     border-bottom: 1px solid var(--color-outline);
+  }
+
+  /* Show all panels on mobile regardless of active state */
+  .projects__panel[aria-hidden="true"] {
+    display: flex;
   }
 
   .projects__panel-grid {
@@ -243,40 +305,20 @@
     transform: none;
   }
 
-  .projects__progress {
+  .projects__nav {
     display: none;
   }
 }
 
-/* ── Reduced motion: same vertical stack as mobile ── */
+/* ── Reduced motion: instant cut, no transition ── */
 @media (prefers-reduced-motion: reduce) {
-  .projects {
-    height: auto;
-    overflow: visible;
-  }
-
   .projects__track {
-    flex-direction: column;
-    will-change: auto;
-  }
-
-  .projects__panel {
-    width: 100%;
-    height: auto;
-    padding-block: var(--space-16);
-    border-top: 1px solid var(--color-outline);
-  }
-
-  .projects__panel:last-child {
-    border-bottom: 1px solid var(--color-outline);
+    transition: none;
   }
 
   .browser-window,
   .projects__panel--flip .browser-window {
     transform: none;
-  }
-
-  .projects__progress {
-    display: none;
+    transition: none;
   }
 }
