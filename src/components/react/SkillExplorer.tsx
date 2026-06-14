@@ -1,4 +1,4 @@
-import { useId, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import {
   CATEGORY_FAMILY,
   CATEGORY_ORDER,
@@ -135,6 +135,18 @@ export default function SkillExplorer() {
   const svgRef = useRef<SVGSVGElement>(null);
   const uid = useId().replace(/:/g, ""); // stable, querySelector-safe id prefix
 
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (svgRef.current && !svgRef.current.contains(e.target as Node)) {
+        setOpenCat(null);
+        setSelected(null);
+        setTip(null);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
   const wedges = layout(openCat);
 
   const chooseCat = (cat: SkillCategory) => {
@@ -216,10 +228,7 @@ export default function SkillExplorer() {
           onFocus={() => setTip({ text: w.cat, mid: (w.a0 + w.a1) / 2 })}
           onBlur={() => setTip(null)}
         >
-          <path
-            d={donutSeg(w.a0, w.a1)}
-            style={{ fill: familyVar(w.cat) }}
-          />
+          <path d={donutSeg(w.a0, w.a1)} style={{ fill: familyVar(w.cat) }} />
           {!openCat && (
             <>
               <path id={pid} d={labelPath(w.a0, w.a1)} fill="none" />
@@ -401,7 +410,7 @@ export default function SkillExplorer() {
               textAnchor="middle"
               className="donut-center__hint"
             >
-              Tap a skillset to break it into skills.
+              Tap a skillset to explore.
             </text>
           )}
         </g>

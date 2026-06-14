@@ -3,11 +3,14 @@ import type { Project } from "../../data/projects";
 interface Props {
   project: Project;
   index: number;
-  isFirst?: boolean;
   isActive?: boolean;
 }
 
-export default function ProjectSpread({ project, index, isFirst, isActive = true }: Props) {
+export default function ProjectSpread({
+  project,
+  index,
+  isActive = true,
+}: Props) {
   const flipped = index % 2 === 1;
   const displayUrl = project.live?.replace(/^https?:\/\//, "");
 
@@ -18,11 +21,6 @@ export default function ProjectSpread({ project, index, isFirst, isActive = true
     >
       <div className="container projects__panel-grid">
         <div className="project-spread__text">
-          {isFirst && (
-            <p className="section-indicator" aria-hidden="true">
-              # Projects
-            </p>
-          )}
           <p className="project-spread__index" aria-hidden="true">
             0{index + 1}
           </p>
@@ -64,31 +62,38 @@ export default function ProjectSpread({ project, index, isFirst, isActive = true
         </div>
 
         <div className="project-spread__visual">
-          <figure
-            className="browser-window"
-            aria-label={`${project.title} app preview`}
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${project.title} live site`}
           >
-            <div className="browser-window__bar" aria-hidden="true">
-              <span className="browser-window__dot" />
-              <span className="browser-window__dot" />
-              <span className="browser-window__dot" />
-              {displayUrl && (
-                <span className="browser-window__url">{displayUrl}</span>
-              )}
-            </div>
-            <div className="browser-window__screen">
-              {project.screenshot ? (
-                <img
-                  src={project.screenshot}
-                  alt={`${project.title} screenshot`}
-                  className="browser-window__img"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="browser-window__placeholder" />
-              )}
-            </div>
-          </figure>
+            <figure
+              className="browser-window"
+              aria-label={`${project.title} app preview`}
+            >
+              <div className="browser-window__bar" aria-hidden="true">
+                <span className="browser-window__dot" />
+                <span className="browser-window__dot" />
+                <span className="browser-window__dot" />
+                {displayUrl && (
+                  <span className="browser-window__url">{displayUrl}</span>
+                )}
+              </div>
+              <div className="browser-window__screen">
+                {project.screenshot ? (
+                  <img
+                    src={project.screenshot}
+                    alt={`${project.title} screenshot`}
+                    className="browser-window__img"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="browser-window__placeholder" />
+                )}
+              </div>
+            </figure>
+          </a>
         </div>
       </div>
     </article>

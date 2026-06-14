@@ -10,8 +10,10 @@ export default function CaseStudies() {
           The invisible work.
         </h2>
         <p className="case-studies__lede">
-          No flashy public apps yet — the real value lived inside the codebases.
-          Here's the engineering that doesn't show up in a screenshot.
+          My work lives behind login screens, private repos, the real value
+          lived inside the codebases. Here's the engineering that doesn't show
+          up in a screenshot, a series of case studies that represent my
+          engineering work and impact.
         </p>
       </div>
 

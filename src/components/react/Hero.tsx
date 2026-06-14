@@ -69,8 +69,8 @@ export default function Hero() {
 
           <div className="hero__intro">
             <p className="hero__lead">
-              Hi, I'm <strong>Jose Smiller</strong> — a Senior Software Engineer with{" "}
-              <strong>7+ years</strong> building scalable web &amp; mobile apps across
+              Hi, I'm <strong>Jose Smiller</strong>, a Senior Software Engineer with{" "}
+              <strong>7+ years</strong> experience building scalable web &amp; mobile apps across
               fintech, oil &amp; gas, SaaS, and interactive media. I rescue legacy
               codebases, architect global rollouts, and turn messy requirements into
               resilient systems.

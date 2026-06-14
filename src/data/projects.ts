@@ -15,7 +15,7 @@ export const projects: Project[] = [
     id: "atlas",
     title: "State of the World",
     description:
-      "An interactive world map visualising four World Bank development indicators — electricity access, greenhouse gas emissions, internet usage, and female school completion — across six decades of data. Features a choropleth flat map, a drag-to-rotate globe, per-country detail sheets with sparklines, and a year scrubber spanning 1960–2024.",
+      "An interactive world map visualising four World Bank development indicators; electricity access, greenhouse gas emissions, internet usage, and female school completion, across six decades of data.",
     tags: ["Angular 22", "Signals", "D3-geo", "TypeScript", "SCSS"],
     block: "lavender",
     live: "https://state-of-world.netlify.app",

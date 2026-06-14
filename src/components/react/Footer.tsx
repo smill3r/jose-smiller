@@ -28,15 +28,8 @@ const LINKS = [
     href: "https://github.com/smill3r",
     icon: "code",
     colorClass: "contact-btn--mint",
-    note: "Small experiments and exercises I used to learn new things — not production-grade.",
+    note: "Small experiments and exercises I used to learn new things, not production-grade.",
   },
-  /* {
-    label: "Portfolio",
-    value: "jsmiller.netlify.app",
-    href: "https://jsmiller.netlify.app",
-    icon: "language",
-    colorClass: "contact-btn--mint",
-  }, */
 ];
 
 export default function Footer() {
@@ -45,12 +38,10 @@ export default function Footer() {
       <div className="container">
         <Reveal variant="up">
           <p className="section-indicator"># Let's talk</p>
-          <h2 className="contact__headline">
-            Got a messy codebase or an ambitious rollout?
-          </h2>
+          <h2 className="contact__headline">Interested in working together?</h2>
           <p className="contact__lede">
             I'm open to senior / staff full-stack &amp; frontend roles. Let's
-            build something resilient.
+            build together.
           </p>
         </Reveal>
 

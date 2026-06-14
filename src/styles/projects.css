@@ -1,6 +1,18 @@
 /* ===== Projects — manual carousel ===== */
 
-.projects {
+.projects__intro {
+  padding-block-start: var(--space-24);
+  padding-block-end: var(--space-8);
+}
+
+.projects__lede {
+  color: var(--color-ink-muted);
+  max-width: 52ch;
+  line-height: 1.7;
+  margin-top: var(--space-5);
+}
+
+.projects__carousel {
   overflow: hidden;
   height: 100vh;
   position: relative;
@@ -48,16 +60,10 @@
   margin-bottom: var(--space-2);
 }
 
-/* Ghost/outline headline — editorial centrepiece */
 .project-spread__title {
-  font-family: var(--font-serif);
-  font-size: clamp(2.75rem, 5vw, 4.5rem);
-  font-weight: 700;
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  -webkit-text-stroke: 1.5px var(--accent);
-  color: transparent;
+  font-size: var(--text-h2);
   margin-bottom: var(--space-5);
+  max-width: 18ch;
 }
 
 .project-spread__desc {
@@ -82,7 +88,6 @@
   font-size: 0.75rem;
   color: var(--accent);
   background: color-mix(in srgb, var(--block-fill) 45%, var(--color-surface));
-  border: 1px solid color-mix(in srgb, var(--block-fill) 70%, var(--color-outline));
   border-radius: var(--radius-full);
   padding: 2px var(--space-3);
   letter-spacing: 0.02em;
@@ -91,6 +96,7 @@
 .project-spread__links {
   display: flex;
   gap: var(--space-6);
+  margin-top: var(--space-4);
 }
 
 .project-spread__link {
@@ -150,9 +156,15 @@
   flex-shrink: 0;
 }
 
-.browser-window__dot:nth-child(1) { background: #ff5f57; }
-.browser-window__dot:nth-child(2) { background: #febc2e; }
-.browser-window__dot:nth-child(3) { background: #28c840; }
+.browser-window__dot:nth-child(1) {
+  background: #ff5f57;
+}
+.browser-window__dot:nth-child(2) {
+  background: #febc2e;
+}
+.browser-window__dot:nth-child(3) {
+  background: #28c840;
+}
 
 .browser-window__url {
   font-family: var(--font-mono);
@@ -163,7 +175,11 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   flex: 1;
-  background: color-mix(in srgb, var(--color-outline) 40%, var(--color-surface));
+  background: color-mix(
+    in srgb,
+    var(--color-outline) 40%,
+    var(--color-surface)
+  );
   border: 1px solid var(--color-outline);
   border-radius: var(--radius-sm);
   padding: 2px var(--space-3);
@@ -263,7 +279,7 @@
 
 /* ── Mobile: revert to vertical stack, hide carousel nav ── */
 @media (max-width: 768px) {
-  .projects {
+  .projects__carousel {
     height: auto;
     overflow: visible;
   }
