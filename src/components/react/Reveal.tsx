@@ -44,11 +44,15 @@ export default function Reveal({
         ? (gsap.utils.toArray(ref.current.children) as Element[])
         : [ref.current];
 
+      const from: gsap.TweenVars = { opacity: 0 };
+      if (variant === "up") from.y = 40;
+      if (variant === "block") from.clipPath = "inset(0 100% 0 0)";
+
       const to: gsap.TweenVars = { opacity: 1 };
       if (variant === "up") to.y = 0;
       if (variant === "block") to.clipPath = "inset(0 0% 0 0)";
 
-      gsap.to(targets, {
+      gsap.fromTo(targets, from, {
         ...to,
         duration: 0.9,
         delay,

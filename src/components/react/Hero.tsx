@@ -11,19 +11,20 @@ export default function Hero() {
       if (prefersReducedMotion || !root.current) return;
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.to(".hero__word", {
-        yPercent: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.08,
-      })
-        .to(
+      tl.fromTo(
+        ".hero__word",
+        { yPercent: 120, opacity: 0 },
+        { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.08 },
+      )
+        .fromTo(
           ".hero__intro > *",
+          { y: 24, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.7, stagger: 0.12 },
           "-=0.3",
         )
-        .to(
+        .fromTo(
           ".hero__portrait",
+          { y: 32, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.9 },
           "-=0.9",
         )
