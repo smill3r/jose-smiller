@@ -11,20 +11,20 @@ export default function Hero() {
       if (prefersReducedMotion || !root.current) return;
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.from(".hero__word", {
-        yPercent: 120,
-        opacity: 0,
+      tl.to(".hero__word", {
+        yPercent: 0,
+        opacity: 1,
         duration: 0.8,
         stagger: 0.08,
       })
-        .from(
+        .to(
           ".hero__intro > *",
-          { y: 24, opacity: 0, duration: 0.7, stagger: 0.12 },
+          { y: 0, opacity: 1, duration: 0.7, stagger: 0.12 },
           "-=0.3",
         )
-        .from(
+        .to(
           ".hero__portrait",
-          { y: 32, opacity: 0, duration: 0.9 },
+          { y: 0, opacity: 1, duration: 0.9 },
           "-=0.9",
         )
         // Gentle, endless float on the decorative shapes.
@@ -99,6 +99,9 @@ export default function Hero() {
             width={520}
             height={520}
             alt="Portrait of Jose Smiller"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
         </div>
       </div>

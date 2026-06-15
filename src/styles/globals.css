@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap");
 @import "./design-system.css";
 @import "./content.css";
 @import "./case-study.css";
@@ -293,6 +292,45 @@ a {
   }
   .topnav__nav li:last-child {
     border-bottom: none;
+  }
+}
+
+/* ===== Pre-animation reveal states =====
+   CSS sets the initial hidden/offset state in SSR HTML so elements are never
+   visible before GSAP runs. gsap.to() reads these as the "from" state.
+   Non-stagger mode targets the wrapper; stagger mode targets direct children. */
+.reveal--up:not(.reveal--stagger),
+.reveal--fade:not(.reveal--stagger),
+.reveal--block:not(.reveal--stagger) {
+  opacity: 0;
+}
+.reveal--up:not(.reveal--stagger) {
+  transform: translateY(40px);
+}
+.reveal--block:not(.reveal--stagger) {
+  clip-path: inset(0 100% 0 0);
+}
+.reveal--up.reveal--stagger > *,
+.reveal--fade.reveal--stagger > *,
+.reveal--block.reveal--stagger > * {
+  opacity: 0;
+}
+.reveal--up.reveal--stagger > * {
+  transform: translateY(40px);
+}
+.reveal--block.reveal--stagger > * {
+  clip-path: inset(0 100% 0 0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal--up,
+  .reveal--fade,
+  .reveal--block,
+  .reveal--up > *,
+  .reveal--fade > *,
+  .reveal--block > * {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
   }
 }
 
