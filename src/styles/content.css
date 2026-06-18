@@ -36,8 +36,7 @@
 }
 .hero__word {
   display: inline-block;
-  /* Start below the clip mask; GSAP animates up to yPercent:0 */
-  transform: translateY(120%);
+  /* opacity:0 hides words before JS; GSAP owns the yPercent transform entirely */
   opacity: 0;
 }
 .hero__word--accent {
