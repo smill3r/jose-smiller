@@ -36,6 +36,9 @@
 }
 .hero__word {
   display: inline-block;
+  /* Start below the clip mask; GSAP animates up to yPercent:0 */
+  transform: translateY(120%);
+  opacity: 0;
 }
 .hero__word--accent {
   font-style: italic;
@@ -47,6 +50,10 @@
   gap: var(--space-8);
   max-width: 60ch;
 }
+.hero__intro > * {
+  transform: translateY(24px);
+  opacity: 0;
+}
 
 /* Transparent-PNG headshot framed in a round, see-through container. */
 .hero__portrait {
@@ -56,6 +63,8 @@
   border-radius: var(--radius-full);
   overflow: hidden;
   background: transparent;
+  transform: translateY(32px);
+  opacity: 0;
 }
 .hero__portrait img {
   display: block;
@@ -135,6 +144,16 @@
   height: 56px;
   background: var(--lavender);
   border-radius: var(--radius-full);
+}
+
+/* Reduced motion: show hero content immediately in its final state. */
+@media (prefers-reduced-motion: reduce) {
+  .hero__word,
+  .hero__intro > *,
+  .hero__portrait {
+    transform: none;
+    opacity: 1;
+  }
 }
 
 @media (max-width: 860px) {

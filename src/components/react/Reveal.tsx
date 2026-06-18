@@ -19,6 +19,11 @@ interface RevealProps {
  * Reusable scroll-in reveal. Centralizes the ScrollTrigger setup so individual
  * sections never re-implement it. Honors prefers-reduced-motion by rendering
  * the final state immediately (no animation, content always visible).
+ *
+ * CSS classes (reveal--up, reveal--fade, reveal--block) set the initial hidden
+ * state in the SSR HTML so the element is never visible before GSAP runs.
+ * The animation uses gsap.to() (not from()) so GSAP reads the CSS "from" state
+ * and animates to the final state — eliminating the visible → invisible flash.
  */
 export default function Reveal({
   children,
@@ -43,8 +48,12 @@ export default function Reveal({
       if (variant === "up") from.y = 40;
       if (variant === "block") from.clipPath = "inset(0 100% 0 0)";
 
-      gsap.from(targets, {
-        ...from,
+      const to: gsap.TweenVars = { opacity: 1 };
+      if (variant === "up") to.y = 0;
+      if (variant === "block") to.clipPath = "inset(0 0% 0 0)";
+
+      gsap.fromTo(targets, from, {
+        ...to,
         duration: 0.9,
         delay,
         ease: "power3.out",
@@ -52,8 +61,6 @@ export default function Reveal({
         scrollTrigger: {
           trigger: ref.current,
           start: "top 85%",
-          // Play once on enter; reset when scrolled fully back above so it
-          // replays on the way down again (matches the storytelling intent).
           toggleActions: "play none none reverse",
         },
       });
@@ -61,8 +68,17 @@ export default function Reveal({
     { scope: ref },
   );
 
+  const classes = [
+    "reveal",
+    `reveal--${variant}`,
+    stagger ? "reveal--stagger" : null,
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <Tag ref={ref} className={className} id={id}>
+    <Tag ref={ref} className={classes} id={id}>
       {children}
     </Tag>
   );
