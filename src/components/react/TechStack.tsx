@@ -9,7 +9,7 @@ export default function TechStack() {
           <p className="section-indicator"># The Toolkit</p>
           <h2 className="section-header">What I build with.</h2>
           <p className="tech-stack__lede">
-            Tap a skillset to reveal its skills — pick one to see where and how
+            Tap a skillset to reveal its skills, pick one to see where and how
             I've used it.
           </p>
 

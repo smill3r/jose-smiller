@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { gsap, ScrollTrigger, useGSAP } from "../../lib/gsap";
 import { scrollToId } from "../../lib/lenis";
 import ThemeToggle from "./ThemeToggle";
@@ -48,18 +48,26 @@ export default function TopNav() {
       },
     });
 
-    // Active-link highlighting: one trigger per section.
-    NAV_ITEMS.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      ScrollTrigger.create({
-        trigger: el,
-        start: "top center",
-        end: "bottom center",
-        onToggle: (self) => self.isActive && setActive(id),
-      });
-    });
   });
+
+  // Active-link highlighting via native scroll — avoids GSAP initialization
+  // ordering issues where multiple onEnter callbacks fire at once on mount.
+  useEffect(() => {
+    function updateActive() {
+      const viewportH = window.innerHeight || document.documentElement.clientHeight;
+      let current = NAV_ITEMS[0].id;
+      NAV_ITEMS.forEach(({ id }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (el.getBoundingClientRect().top <= viewportH * 0.6) current = id;
+      });
+      setActive(current);
+    }
+
+    updateActive();
+    window.addEventListener("scroll", updateActive, { passive: true });
+    return () => window.removeEventListener("scroll", updateActive);
+  }, []);
 
   const handleNav = (id: string) => {
     setMenuOpen(false);

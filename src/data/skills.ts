@@ -89,7 +89,7 @@ export const skills: Skill[] = [
     level: 95,
     years: 6,
     summary:
-      "My default language for app and Node code — strict typing, generics, and refactoring legacy JS to TS at scale.",
+      "My default language for app and Node code, strict typing, generics, and refactoring legacy JS to TS at scale.",
     highlights: [
       "Migrated a large legacy Angular codebase to TypeScript at Avantio",
       "Type-safe REST/GraphQL clients and Node services",
@@ -102,7 +102,7 @@ export const skills: Skill[] = [
     level: 95,
     years: 7,
     summary:
-      "Seven years across the stack — async, the event loop, and performance profiling in both browser and Node.",
+      "Seven years across the stack, async, the event loop, and performance profiling in both browser and Node.",
     highlights: [
       "Object-pooling particle systems for real-time exhibits at EPAM",
     ],
@@ -131,7 +131,7 @@ export const skills: Skill[] = [
     category: "Languages",
     level: 90,
     summary:
-      "Modern layout (grid/flex), custom properties, and motion — including this site's token-driven design system.",
+      "Modern layout (grid/flex), custom properties, and motion, including this site's token-driven design system.",
   },
 
   // Frontend
@@ -142,7 +142,7 @@ export const skills: Skill[] = [
     level: 95,
     years: 7,
     summary:
-      "My deepest framework — composition patterns, RxJS, and rescuing non-standard legacy architectures.",
+      "My deepest framework, composition patterns, RxJS, and rescuing non-standard legacy architectures.",
     highlights: [
       "Refactor-as-you-go modernization cutting errors 60% at Avantio",
       "i18n for 5 languages with NgRx at Accenture",
@@ -155,7 +155,7 @@ export const skills: Skill[] = [
     level: 90,
     years: 5,
     summary:
-      "Hooks, component architecture, and islands — including this portfolio.",
+      "Hooks, component architecture, and islands, including this portfolio.",
     highlights: ["Enterprise React applications at EPAM"],
   },
   {
@@ -183,7 +183,7 @@ export const skills: Skill[] = [
     category: "Frontend",
     level: 88,
     summary:
-      "First-class concern — keyboard operability, ARIA, contrast, and reduced-motion. I mentor teams on it.",
+      "First-class concern, keyboard operability, ARIA, contrast, and reduced-motion. I mentor teams on it.",
     highlights: ["Ran accessibility training sessions at Accenture"],
   },
 
@@ -252,7 +252,7 @@ export const skills: Skill[] = [
     category: "Cloud & DevOps",
     level: 80,
     summary:
-      "Kubernetes-native workflows — the platform for my MSc serverless research.",
+      "Kubernetes-native workflows, the platform for my MSc serverless research.",
     highlights: ["OSCAR + Argo orchestration in my thesis"],
   },
   {

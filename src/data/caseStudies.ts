@@ -67,7 +67,7 @@ export const caseStudies: CaseStudy[] = [
     meta: "EPAM · Google Xperience Studio · 2022–2024",
     title: "Engineering high-performance creative experiences",
     challenge:
-      "Inside Google's Xperience Studio I built real-time interactive art exhibits — complex physics, 3D environments, and AI pose estimation — that had to stay smooth for many concurrent visitors without lag or crashes.",
+      "Inside Google's Xperience Studio I built real-time interactive art exhibits, complex physics, 3D environments, and AI pose estimation that had to stay smooth for many concurrent visitors without lag or crashes.",
     strategy: [
       {
         heading: "Object pooling",
@@ -83,7 +83,7 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     impact:
-      "Fluid, high-frame-rate experiences that stayed stable under heavy public use — closing the gap between creative vision and technical performance.",
+      "Fluid, high-frame-rate experiences that stayed stable under heavy public use, closing the gap between creative vision and technical performance.",
     diagram: "xperience",
     block: "periwinkle",
     links: [
@@ -133,7 +133,7 @@ export const caseStudies: CaseStudy[] = [
     meta: "UPV · MSc Thesis · Open-Source Research",
     title: "Orchestrating the future of serverless workflows",
     challenge:
-      "In serverless computing the system 'forgets' everything the moment a task finishes, making complex sequences hard to coordinate. My thesis needed to chain ephemeral tasks — image processing, sentiment analysis — inside the open-source OSCAR/Kubernetes platform.",
+      "In serverless computing the system 'forgets' everything the moment a task finishes, making complex sequences hard to coordinate. My thesis needed to chain ephemeral tasks, image processing, sentiment analysis inside the open-source OSCAR/Kubernetes platform.",
     strategy: [
       {
         heading: "Tooling audit",
@@ -149,7 +149,7 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     impact:
-      "I proved you don't need proprietary tools to run complex distributed systems — delivering an open-source blueprint now used as a guide for vendor-free research orchestration.",
+      "I proved you don't need proprietary tools to run complex distributed systems, delivering an open-source blueprint now used as a guide for vendor-free research orchestration.",
     diagram: "serverless",
     block: "mint",
     diagramAlt:

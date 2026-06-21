@@ -33,4 +33,14 @@ export const projects: Project[] = [
     repo: "https://github.com/smill3r/motion",
     screenshot: "/screenshots/motion.png",
   },
+  {
+    id: "chronicle",
+    title: "Chronicle",
+    description:
+      "An interactive history timeline browser. Explore curated historical timelines as a vertical, zoomable rail of events, filterable by category and year range, with Wikipedia context and imagery pulled on demand.",
+    tags: ["NestJS", "React", "MongoDB", "TypeScript", "Wikidata"],
+    block: "periwinkle",
+    live: "https://chronicle-js.vercel.app",
+    screenshot: "/screenshots/chronicle.png",
+  },
 ];
